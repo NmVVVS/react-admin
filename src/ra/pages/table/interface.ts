@@ -1,21 +1,40 @@
-export interface RaTableDataSource {
+import {ColumnsType} from "antd/es/table";
+import {TablePaginationConfig} from "antd";
+import {FilterValue, SorterResult} from "antd/es/table/interface";
+
+export interface RaTableDataSource<T = any> {
     pageIndex: number;
     pageSize: number;
     total: number;
-    data: any[];
+    data: T[];
 }
 
 export interface RaTableSearchQuery {
-    page?: { pageIndex?: number, pageSize?: number; }
-    sort?: {};
-    filter?: {};
+    pagination?: TablePaginationConfig;
+    filters?: Record<string, FilterValue | null>;
+    sorter?: SorterResult<any> | SorterResult<any>[];
 }
 
-export interface RaTableProps {
-    key?: string;
+export interface RaTableTableProps {
+    loading: boolean;
+    config?: RaTableConfig;
+    datasource?: RaTableDataSource;
+    multiple?: boolean;
+    onSelected?: (values: any[] | any) => void;
 }
 
-type RaTableColumnType = "string" | "boolean" | "enum" | "datetime" | "date" | "time" | "image" | "custom";
+export type RaTableColumnType =
+    "string"
+    | "boolean"
+    | "enum"
+    | "datetime"
+    | "date"
+    | "time"
+    | "image"
+    | "custom"
+    | "password"
+    | "number"
+    | "relevance";
 
 export interface RaTableColumn {
     show: boolean;
@@ -29,6 +48,10 @@ export interface RaTableColumn {
     editable: boolean;
     component?: string;
     createable: boolean;
+    table_name?: string;
+    field_name?: string;
+    width?: number;
+    count?: number;
 }
 
 export interface RaTableConfig {
@@ -38,4 +61,13 @@ export interface RaTableConfig {
     disableable: boolean;
     customEditPath?: string;
     columns: RaTableColumn[];
+}
+
+export interface RaTableProps {
+    tableKey?: string;
+    showType?: "page" | "dialog";
+    type?: "datasource" | "group";
+    multiple?: boolean;
+    onSelected?: (values: any[] | any) => void;
+    sorter?: { columnKey: string, order: "ascend" | "descend" }
 }

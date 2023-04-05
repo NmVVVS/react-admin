@@ -1,8 +1,10 @@
 import React, {useImperativeHandle, useMemo} from "react";
-import {DatePicker, Form, Input, Radio, Switch} from "antd";
+import {App, DatePicker, Form, Input, InputNumber, Radio, Switch} from "antd";
 import {RaTableColumn} from "./interface";
 import ComponentsMap from "../../config/ComponentsMap";
 import {useForm} from "antd/es/form/Form";
+import {TableRelevanceFormInput} from "../../components/table-relevance";
+import {TableFileFormInput} from "../../components/table-file";
 
 interface RaTableEditorProps {
     columns: RaTableColumn[];
@@ -20,14 +22,22 @@ const RaTableEditor = React.forwardRef((props: RaTableEditorProps, ref) => {
         switch (column.type) {
             case "string":
                 return <Input/>
+            case "number":
+                return <InputNumber/>
             case "boolean":
                 return <Switch/>
             case "enum":
                 return <Radio.Group options={column.enum}/>
             case "datetime":
                 return <Input/>
+            case "password":
+                return <Input.Password/>
             case "custom":
                 return React.createElement(ComponentsMap[column.component!].formInput);
+            case "relevance":
+                return <TableRelevanceFormInput tableKey={"menu"} field_name={column.field_name!}/>;
+            case "image":
+                return <TableFileFormInput accept="image/*" count={column.count}/>
             default:
         }
     }

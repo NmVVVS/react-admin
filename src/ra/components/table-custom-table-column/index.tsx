@@ -1,11 +1,12 @@
 import React, {useRef, useState} from "react";
-import {
-    TableCustomInputRenderFormInputProps,
-    TableCustomInputRenderTableRenderProps
-} from "../table-custom-input-render";
+// import {
+//     TableCustomInputRenderFormInputProps,
+//     TableCustomInputRenderTableRenderProps
+// } from "../table-custom-input-render";
 import {Button, Input, Space} from "antd";
 import ReactDialog from 'react-dialog';
 import ColumnEditor from "./ColumnEditor";
+import {TableCustomInputRenderFormInputProps, TableCustomInputRenderTableRenderProps} from "./interface";
 
 const FormInput: React.FC<TableCustomInputRenderFormInputProps> = (props) => {
     const columnEditorRef = useRef<any>();

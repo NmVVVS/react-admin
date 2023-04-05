@@ -7,7 +7,6 @@ import React from "react";
 
 const EnumColumnTagColor = ['geekblue', 'blue', 'volcano', 'red', 'magenta', '#f50', '#2db7f5', '#87d068', '#108ee9'];
 const RaTableColumnRender = (value: any, column: RaTableColumn) => {
-
     switch (column.type) {
         case "string":
             return value;
@@ -25,7 +24,10 @@ const RaTableColumnRender = (value: any, column: RaTableColumn) => {
             return <Tag color={EnumColumnTagColor[column.enum!.indexOf(value)]}>{value}</Tag>;
         case "custom":
             return React.createElement(ComponentsMap[column.component!].tableRender, {value})
-        // return;
+        case "number":
+            return value;
+        case "relevance":
+            return value;
         default:
             return value + "";
     }
