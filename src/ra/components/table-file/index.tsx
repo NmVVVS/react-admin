@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Button, Input, Space} from "antd";
 import {TableFileFormInputProp} from "./interface";
-import ReactDialog from 'react-dialog';
-import ReactFileManager from 'react-file-manager';
+// import ReactDialog from 'react-dialog';
+// import ReactFileManager from 'react-file-manager';
 
 
 const TableFileFormInput: React.FC<TableFileFormInputProp> = (props) => {

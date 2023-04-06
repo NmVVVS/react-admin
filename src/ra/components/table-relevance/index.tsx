@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Button, Input, Space} from "antd";
-import ReactDialog from 'react-dialog';
+// import ReactDialog from 'react-dialog';
 import RaTable from "../../pages/table/RaTable";
 import {TableRelevanceFormInputProps} from "./interface";
+import {openDialog} from "@ghgenz/react-dialog";
 
 
 const TableRelevanceFormInput: React.FC<TableRelevanceFormInputProps> = (props) => {
@@ -15,14 +16,17 @@ const TableRelevanceFormInput: React.FC<TableRelevanceFormInputProps> = (props) 
         setRelevanceValue(value);
     }
     const onClick = () => {
-        new ReactDialog().show(
-            {
-                children: <RaTable tableKey={props.tableKey} showType="dialog" multiple={false}
-                                   onSelected={onSelected}/>,
-                onCancel: (e) => e.close(),
-                onOk: (e) => e.close()
-            }
-        );
+        openDialog({
+            children: <RaTable tableKey={props.tableKey} showType="dialog" multiple={false} onSelected={onSelected}/>,
+        })
+        // new ReactDialog().show(
+        //     {
+        //         children: <RaTable tableKey={props.tableKey} showType="dialog" multiple={false}
+        //                            onSelected={onSelected}/>,
+        //         onCancel: (e) => e.close(),
+        //         onOk: (e) => e.close()
+        //     }
+        // );
     }
 
 

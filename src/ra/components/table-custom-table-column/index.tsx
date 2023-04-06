@@ -4,27 +4,31 @@ import React, {useRef, useState} from "react";
 //     TableCustomInputRenderTableRenderProps
 // } from "../table-custom-input-render";
 import {Button, Input, Space} from "antd";
-import ReactDialog from 'react-dialog';
+// import ReactDialog from 'react-dialog';
 import ColumnEditor from "./ColumnEditor";
 import {TableCustomInputRenderFormInputProps, TableCustomInputRenderTableRenderProps} from "./interface";
+import {openDialog} from "@ghgenz/react-dialog";
 
 const FormInput: React.FC<TableCustomInputRenderFormInputProps> = (props) => {
     const columnEditorRef = useRef<any>();
     const [value, setValue] = useState<string>(JSON.stringify(props.value));
 
     const onClick = () => {
-        new ReactDialog().show({
+        openDialog({
             children: <ColumnEditor ref={columnEditorRef} value={props.value}/>,
-            onCancel: (ins) => ins.close(),
-            onOk: (ins) => {
-                columnEditorRef?.current?.validateFields().then((res: any) => {
-                    console.log(res)
-                    props.onChange?.(res);
-                    setValue(JSON.stringify(res));
-                    ins.close();
-                });
-            }
         });
+        // new ReactDialog().show({
+        //     children: <ColumnEditor ref={columnEditorRef} value={props.value}/>,
+        //     onCancel: (ins) => ins.close(),
+        //     onOk: (ins) => {
+        //         columnEditorRef?.current?.validateFields().then((res: any) => {
+        //             console.log(res)
+        //             props.onChange?.(res);
+        //             setValue(JSON.stringify(res));
+        //             ins.close();
+        //         });
+        //     }
+        // });
     }
 
 

@@ -5,9 +5,9 @@ import EventBus from "../../utils/EventBus";
 import {useSearchParams} from "react-router-dom";
 import RaTableTable from "./RaTableTable";
 import RaTableEditor from "./RaTableEditor";
-import ReactDialog from 'react-dialog';
 import {App, TablePaginationConfig} from "antd";
 import {FilterValue, SorterResult} from "antd/es/table/interface";
+import {openDialog} from "@ghgenz/react-dialog";
 
 const RaTable: React.FC<RaTableProps> = (props) => {
 
@@ -69,21 +69,24 @@ const RaTable: React.FC<RaTableProps> = (props) => {
         if (index !== undefined) {
             row = dataSource?.data![index];
         }
-        new ReactDialog().show({
+        openDialog({
             title: index === undefined ? "新增" : "编辑",
             children: React.createElement(RaTableEditor, {ref: editFormRef, columns: config!.columns, row: row}),
-            onCancel: (e) => e.close(),
-            onOk: (e) => {
-                editFormRef.current?.validateFields().then((data: any) => {
-                    const path = index === undefined ? `/add/${tableKey}` : `/edit/${tableKey}/${data._id}`;
-                    return RaAxios.post(path, data);
-                }).then((res: any) => {
-                    message.success("请求成功");
-                    e.close();
-                    // console.log(res);
-                })
-            }
         })
+        // new ReactDialog().show({
+        //
+        //     onCancel: (e) => e.close(),
+        //     onOk: (e) => {
+        //         editFormRef.current?.validateFields().then((data: any) => {
+        //             const path = index === undefined ? `/add/${tableKey}` : `/edit/${tableKey}/${data._id}`;
+        //             return RaAxios.post(path, data);
+        //         }).then((res: any) => {
+        //             message.success("请求成功");
+        //             e.close();
+        //             // console.log(res);
+        //         })
+        //     }
+        // })
     }
 
     const onTableQueryChange = (pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<any> | SorterResult<any>[]) => {

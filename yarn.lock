@@ -212,6 +212,13 @@
   resolved "https://registry.npmmirror.com/@esbuild/win32-x64/-/win32-x64-0.17.15.tgz#c2e737f3a201ebff8e2ac2b8e9f246b397ad19b8"
   integrity sha512-DjDa9ywLUUmjhV2Y9wUTIF+1XsmuFGvZoCmOWkli1XcNAh5t25cc7fgsCx4Zi/Uurep3TTLyDiKATgGEg61pkA==
 
+"@ghgenz/react-dialog@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@ghgenz/react-dialog/-/react-dialog-1.0.4.tgz#320439ce71d97065b8064b10e1bf91e13aa600e6"
+  integrity sha512-VdL6zAdToyX6aq7uKICs1Ggqksh4HwOiSjNi+ffA2VyPzBnHKM47+X4pdBgNSF+7oD17CsvRaprkFVvN1J6kuQ==
+  dependencies:
+    "@ant-design/icons" "^5.0.1"
+
 "@rc-component/context@^1.3.0":
   version "1.3.0"
   resolved "https://registry.npmmirror.com/@rc-component/context/-/context-1.3.0.tgz#608ccf0abcbec9406751b17a4b35db08e481c110"
